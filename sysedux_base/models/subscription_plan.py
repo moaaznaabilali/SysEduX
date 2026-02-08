@@ -87,17 +87,6 @@ class SubscriptionPlan(models.Model):
         default=False
     )
     
-    # Relations
-    client_ids = fields.One2many(
-        'sysedux.client',
-        'subscription_plan_id',
-        string='Clients'
-    )
-    client_count = fields.Integer(
-        string='Client Count',
-        compute='_compute_client_count'
-    )
-    
     # Styling
     color = fields.Integer(
         string='Color Index'
@@ -120,11 +109,6 @@ class SubscriptionPlan(models.Model):
         """Calculate yearly price with 2 months free discount"""
         for plan in self:
             plan.price_yearly = plan.price_monthly * 10  # 2 months free
-
-    @api.depends('client_ids')
-    def _compute_client_count(self):
-        for plan in self:
-            plan.client_count = len(plan.client_ids)
 
     def name_get(self):
         result = []

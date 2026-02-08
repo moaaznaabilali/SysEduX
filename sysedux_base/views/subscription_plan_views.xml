@@ -13,7 +13,6 @@
                 <field name="max_users"/>
                 <field name="max_storage_gb"/>
                 <field name="price_monthly" widget="monetary"/>
-                <field name="client_count"/>
                 <field name="active" column_invisible="1"/>
             </list>
         </field>
@@ -27,13 +26,6 @@
             <form string="Subscription Plan">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="%(sysedux_clients.action_sysedux_client)d" 
-                                type="action" 
-                                class="oe_stat_button" 
-                                icon="fa-building"
-                                context="{'search_default_subscription_plan_id': active_id}">
-                            <field name="client_count" widget="statinfo" string="Clients"/>
-                        </button>
                     </div>
                     <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
                     <div class="oe_title">
@@ -89,7 +81,6 @@
                 <field name="max_users"/>
                 <field name="max_storage_gb"/>
                 <field name="price_monthly"/>
-                <field name="client_count"/>
                 <field name="color"/>
                 <field name="badge_color"/>
                 <templates>
@@ -111,11 +102,8 @@
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <strong><field name="price_monthly" widget="monetary"/> /mo</strong>
-                            </div>
-                            <div class="col-6 text-end">
-                                <span class="badge text-bg-secondary"><field name="client_count"/> clients</span>
                             </div>
                         </div>
                     </t>
