@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sysedux_client_viewer,sysedux.client.viewer,model_sysedux_client,sysedux_base.group_sysedux_viewer,1,0,0,0
+access_sysedux_client_operator,sysedux.client.operator,model_sysedux_client,sysedux_base.group_sysedux_operator,1,1,1,0
+access_sysedux_client_manager,sysedux.client.manager,model_sysedux_client,sysedux_base.group_sysedux_manager,1,1,1,0
+access_sysedux_client_admin,sysedux.client.admin,model_sysedux_client,sysedux_base.group_sysedux_admin,1,1,1,1

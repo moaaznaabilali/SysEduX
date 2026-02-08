@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Module Category -->
+    <record id="module_category_sysedux" model="ir.module.category">
+        <field name="name">SysEduX</field>
+        <field name="description">SaaS Management System</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <!-- Access Groups - Hierarchy -->
+    
+    <!-- Level 1: Viewer - Can only view data -->
+    <record id="group_sysedux_viewer" model="res.groups">
+        <field name="name">Viewer</field>
+        <field name="category_id" ref="module_category_sysedux"/>
+        <field name="comment">Can view clients and basic reports</field>
+    </record>
+
+    <!-- Level 2: Operator - Can manage clients, inherits Viewer -->
+    <record id="group_sysedux_operator" model="res.groups">
+        <field name="name">Operator</field>
+        <field name="category_id" ref="module_category_sysedux"/>
+        <field name="implied_ids" eval="[(4, ref('group_sysedux_viewer'))]"/>
+        <field name="comment">Can manage clients, subscriptions and view reports</field>
+    </record>
+
+    <!-- Level 3: Manager - Full management, inherits Operator -->
+    <record id="group_sysedux_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_sysedux"/>
+        <field name="implied_ids" eval="[(4, ref('group_sysedux_operator'))]"/>
+        <field name="comment">Full management access including billing and system settings</field>
+    </record>
+
+    <!-- Level 4: Administrator - God mode, inherits Manager -->
+    <record id="group_sysedux_admin" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="category_id" ref="module_category_sysedux"/>
+        <field name="implied_ids" eval="[(4, ref('group_sysedux_manager'))]"/>
+        <field name="comment">Full system administrator with all permissions</field>
+    </record>
+
+    <!-- Record Rules -->
+    
+    <!-- Viewers can only see active clients -->
+    <record id="rule_viewer_active_clients" model="ir.rule">
+        <field name="name">Viewers: Active Clients Only</field>
+        <field name="model_id" ref="sysedux_clients.model_sysedux_client"/>
+        <field name="domain_force">[('status', '=', 'active')]</field>
+        <field name="groups" eval="[(4, ref('group_sysedux_viewer'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+</odoo>

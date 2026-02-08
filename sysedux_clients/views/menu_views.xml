@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Clients Menu -->
+    <menuitem id="menu_sysedux_clients"
+              name="Clients"
+              parent="sysedux_base.menu_sysedux_root"
+              action="action_sysedux_client"
+              sequence="10"
+              groups="sysedux_base.group_sysedux_viewer"/>
+
+</odoo>
